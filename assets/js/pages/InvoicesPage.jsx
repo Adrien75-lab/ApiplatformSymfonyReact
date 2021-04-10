@@ -19,6 +19,8 @@ const InvoicesPage = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
    
+        // Récupération des invoices auprès de l'API
+
         const fetchInvoices = async () => {
             try {
             const data = await axios
@@ -29,6 +31,7 @@ const InvoicesPage = (props) => {
             console.log(error.response);
         }
     };
+    // Charger les invoices au chargement du composant
     useEffect(() => {
         fetchInvoices();
     }, []);
@@ -36,7 +39,8 @@ const InvoicesPage = (props) => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     }
-
+    // Gestion de la suppression
+    
     const handleDelete = async id => {
         const originalInvoices = [...invoices];
         setInvoices(invoices.filter(invoice => invoice.id !== id));
@@ -48,6 +52,7 @@ const InvoicesPage = (props) => {
             setInvoices(originalInvoices);
         }
     }
+   
     const itemsPerPage = 10;
     const paginatedInvoices = Pagination.getData(invoices,currentPage,itemsPerPage);
     return (

@@ -22,6 +22,7 @@ const CustomersPage = (props) => {
             console.log(error.response)
         })
     };
+    // Gestion du changement de page
     const handlePageChange = (page) => {
         setCurrentPage(page);
     }
