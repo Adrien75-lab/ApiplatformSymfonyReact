@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import axios from "axios";
 import AuthAPI from '../services/authAPI';
 
 const LoginPage = (props) => {
@@ -11,13 +10,14 @@ const LoginPage = (props) => {
 
 const [error, setError] = useState("");
 
-const handleChange =  event => {
-    const value = event.currentTarget.value;
-    const name = event.currentTarget.name;
+// Gestion des champs
+const handleChange =  ({currentTarget}) => {
+    const {value, name} = currentTarget;
+    
 
     setCredentials({ ...credentials, [name]: value});
 };
-
+// Gestion du Submit
 const handleSubmit = async event => {
     event.preventDefault();
     try {
@@ -28,7 +28,7 @@ const handleSubmit = async event => {
         console.log(error.response);
         setError("Aucun compte ne possède cette adresse email ou les informations ne correspondent pas");
     }
-    console.log(credentials);
+   
     
 }
     return ( <>
