@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import AuthAPI from '../services/authAPI';
 
 const LoginPage = (props) => {
     const [credentials, setCredentials] =  useState({
@@ -20,9 +21,8 @@ const handleChange =  event => {
 const handleSubmit = async event => {
     event.preventDefault();
     try {
-        await axios.post("http://localhost:8000/api/login_check", credentials)
-             .then(response => console.log(response)
-        );
+        await AuthAPI.authenticate(credentials);
+        SetError("");
 
     } catch(error){
         console.log(error.response);
