@@ -9,8 +9,11 @@ import { HashRouter, Switch,Route } from "react-router-dom";
 import CustomersPage from './js/pages/CustomersPage';
 import InvoicesPage from './js/pages/InvoicesPage';
 import LoginPage from './js/pages/LoginPage';
+import AuthAPI from './js/services/authAPI';
 
-console.log("Hello World");
+
+
+AuthAPI.setup();
 const App = () => {
     return (
     <HashRouter>
