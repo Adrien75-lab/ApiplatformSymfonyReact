@@ -18,7 +18,7 @@ import LoginPage from "./js/pages/LoginPage";
 import AuthAPI from "./js/services/authAPI";
 
 AuthAPI.setup();
-const PrivateRoute = ({ path, isAuthenticated, component }) => 
+const PrivateRoute = ({ path, isAuthenticated, component }) =>
   isAuthenticated ? (
     <Route path={path} component={component} />
   ) : (
@@ -42,23 +42,19 @@ const App = () => {
         <Switch>
           <Route
             Path="/login"
-            render={(props) => <LoginPage onLogin={setIsAuthenticated} />}
+            render={(props) => (<LoginPage onLogin={setIsAuthenticated} />
+            )}
           />
-          <Route Path="/invoices" component={InvoicesPage} />
+          <PrivateRoute
+            Path="/invoices"
+            isAuthenticated={isAuthenticated}
+            component={InvoicesPage}
+          />
+
           <PrivateRoute
             path="/customers"
             isAuthenticated={isAuthenticated}
             component={CustomersPage}
-          />
-          <Route
-            Path="/customers"
-            render={(props) =>
-              isAuthenticated ? (
-                <CustomersPage {...props} />
-              ) : (
-                <Redirect to="/login" />
-              )
-            }
           />
           <Route path="/" component={HomePage} />
         </Switch>
