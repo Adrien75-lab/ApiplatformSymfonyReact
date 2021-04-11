@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AuthAPI from '../services/authAPI';
 
-const LoginPage = (props) => {
+const LoginPage = ({onLogin}) => {
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -19,6 +19,7 @@ const handleSubmit = async event => {
     try {
         await AuthAPI.authenticate(credentials);
         setError("");
+        onLogin(true);
 
     } catch ( error ){
         

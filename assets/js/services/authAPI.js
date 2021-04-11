@@ -35,16 +35,27 @@ function setup(){
     if (token) {
         const {exp: expiration} = jwtDecode(token);
 
-            if(expiration * 1000, new Date().getTime()) {
+        if(expiration * 1000, new Date().getTime()) {
                 setAxiosToken(token);
-                console.log("Connexion établie avec axios");
-
+                } 
             } 
-    
-        } 
+        }
+
+    function isAuthenticated() {
+        const token = window.localStorage.getItem("authToken");
+        if (token) {
+            const {exp: expiration} = jwtDecode(token);
+
+        if(expiration * 1000, new Date().getTime()) {
+            return true;
+            }
+            return false;
+        }
+       return false;
     }
 export default {
     authenticate,
     logout,
-    setup
+    setup,
+    isAuthenticated
 };
